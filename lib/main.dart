@@ -1,4 +1,5 @@
 import 'package:fl_gym_app/screens/login_screen.dart';
+import 'package:fl_gym_app/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: MainScreen(),
     );
   }
 }
