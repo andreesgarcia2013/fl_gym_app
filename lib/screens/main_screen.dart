@@ -1,6 +1,7 @@
 import 'package:fl_gym_app/screens/cart_screen.dart';
 import 'package:fl_gym_app/screens/products_screen.dart';
 import 'package:fl_gym_app/screens/profile_screen.dart';
+import 'package:fl_gym_app/service/products_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,7 @@ class MainScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
             elevation: 0,
+            centerTitle: false,
             backgroundColor: Color.fromARGB(255, 238, 238, 238),
             title: Text(
               'Logo',
@@ -41,7 +43,7 @@ class _Navegacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final navegacionModel = Provider.of<_NavegacionModels>(context);
-
+    
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
