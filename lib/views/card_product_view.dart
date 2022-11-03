@@ -23,14 +23,16 @@ class _Producto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      margin: EdgeInsets.all(25),
       clipBehavior: Clip.antiAlias,
       elevation: 20,
       child: Column(
         children: [
           FadeInImage(
             image: NetworkImage(
-                'https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png'),
+                producto.gallery[0]),
             placeholder: AssetImage('assets/giphy.gif'),
             height: 230,
             fit: BoxFit.cover,
@@ -68,7 +70,7 @@ class _Producto extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 20),
             child: MaterialButton(
               onPressed: () {},
-              child: Text(
+              child:const Text(
                 'Add cart',
                 style: TextStyle(
                     fontSize: 15,
@@ -76,7 +78,7 @@ class _Producto extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
-              color: Color.fromARGB(255, 214, 90, 49),
+              color:const Color.fromARGB(255, 214, 90, 49),
               elevation: 0,
               minWidth: 100,
               height: 60,
