@@ -25,7 +25,9 @@ class LoginScreen extends StatelessWidget {
               padding: EdgeInsets.all(23),
               child: ListView(
                 children: <Widget>[
-                  SizedBox(height: 150,),
+                  // SizedBox(height: 150,),
+                  Image(image: const AssetImage("assets/logoWhite.png"),
+                  height: 200,),
                   Padding(
                     padding: EdgeInsets.only(top: 20),
                     child: Center(

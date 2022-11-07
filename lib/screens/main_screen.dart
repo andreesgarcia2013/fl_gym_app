@@ -17,9 +17,9 @@ class MainScreen extends StatelessWidget {
             elevation: 0,
             centerTitle: false,
             backgroundColor: Color.fromARGB(255, 238, 238, 238),
-            title: Text(
-              'Logo',
-              style: TextStyle(color: Colors.black),
+            title: Image(
+              image: AssetImage("assets/logo.png"),
+              width: 55,
             ),
             actions: [
               //add
@@ -43,7 +43,7 @@ class _Navegacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final navegacionModel = Provider.of<_NavegacionModels>(context);
-    
+
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(

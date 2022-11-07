@@ -13,6 +13,7 @@ class ProductsScreen extends StatelessWidget {
     
     
     return  Scaffold(
+      backgroundColor: Color.fromARGB(255, 238, 238, 238),
       body: CardProductView(productsService.products)
     );
   }
