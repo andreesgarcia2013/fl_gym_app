@@ -19,8 +19,10 @@ class MainScreen extends StatelessWidget {
             backgroundColor: Color.fromARGB(255, 238, 238, 238),
             title: Image(
               image: AssetImage("assets/logo.png"),
-              width: 55,
+              fit: BoxFit.cover,
+              width: 50,
             ),
+            
             actions: [
               //add
               IconButton(

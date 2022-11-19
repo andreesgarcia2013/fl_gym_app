@@ -1,4 +1,5 @@
 
+import 'package:fl_gym_app/screens/add_card_screen.dart';
 import 'package:fl_gym_app/screens/login_screen.dart';
 import 'package:fl_gym_app/screens/main_screen.dart';
 import 'package:fl_gym_app/service/products_service.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MainScreen(),
+        home:LoginScreen(),
       ),
     );
   }

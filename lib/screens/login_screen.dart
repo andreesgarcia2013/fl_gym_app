@@ -1,10 +1,22 @@
+import 'package:fl_gym_app/screens/main_screen.dart';
+import 'package:fl_gym_app/service/login_service.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  
+  final LoginService _loginService= LoginService();
+  @override
   Widget build(BuildContext context) {
+  
+    
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -49,6 +61,7 @@ class LoginScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
                         child: TextFormField(
+                          controller: _loginService.emailController,
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -58,13 +71,14 @@ class LoginScreen extends StatelessWidget {
                                 color: Colors.white
                               )
                             ),
-                            labelText: 'Username',
+                            labelText: 'Email',
                             labelStyle: TextStyle(fontSize: 15,
                             color: Colors.white)
                           ),
                         ),
                       ),
                       TextFormField(
+                        controller: _loginService.passwordController,
                         obscureText: true,
                           style: TextStyle(
                             color: Colors.white,
@@ -87,7 +101,9 @@ class LoginScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: MaterialButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      _loginService.credentials();
+                    },
                     child: Text('SIGN IN',
                     style: TextStyle(
                       fontSize: 15,
@@ -113,7 +129,7 @@ class LoginScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        Text('Sign up',
+                        Text('SING UP',
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: 'SFUIDisplay'
@@ -139,4 +155,11 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
+  // void _validacion() {
+  //   String email=emailController.text;
+  //   String password=passwordController.text;
+
+  //   _loginService.credentials(email, password);
+  // }
 }
