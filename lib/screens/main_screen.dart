@@ -1,3 +1,4 @@
+import 'package:fl_gym_app/models/userInfo_model.dart';
 import 'package:fl_gym_app/screens/cart_screen.dart';
 import 'package:fl_gym_app/screens/products_screen.dart';
 import 'package:fl_gym_app/screens/profile_screen.dart';
@@ -6,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
+  final UserInfoModel dataUser;
+  const MainScreen({Key? key, required this.dataUser, }) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -30,7 +32,7 @@ class MainScreen extends StatelessWidget {
                   color: Colors.black,
                   onPressed: () {})
             ]),
-        body: _Paginas(),
+        body: _Paginas(dataUser: dataUser,),
         bottomNavigationBar: _Navegacion(),
       ),
     );
@@ -70,8 +72,9 @@ class _Navegacion extends StatelessWidget {
 }
 
 class _Paginas extends StatelessWidget {
-  const _Paginas({
-    Key? key,
+  final UserInfoModel dataUser;
+  const _Paginas(  {
+    Key? key, required this.dataUser,
   }) : super(key: key);
 
   @override
@@ -84,7 +87,7 @@ class _Paginas extends StatelessWidget {
       children: <Widget>[
         ProductsScreen(),
         CartScreen(),
-        ProfileScreen(),
+        ProfileScreen(dataUser: dataUser,),
       ],
     );
   }

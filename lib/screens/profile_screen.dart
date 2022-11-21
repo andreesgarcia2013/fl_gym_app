@@ -1,7 +1,9 @@
+import 'package:fl_gym_app/models/userInfo_model.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  final UserInfoModel dataUser;
+  const ProfileScreen(  {Key? key, required this.dataUser}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +41,11 @@ class ProfileScreen extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      "John Doe",
+                      dataUser.name,
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
+                    Text(dataUser.email),
                     Text("0 Compras Realizadoas")
                   ],
                 ),

@@ -15,8 +15,6 @@ class ProductsService with ChangeNotifier{
     final resp=await http.get(url);
 
     final productsResponse=productModelFromJson(resp.body);
-    
-
     this.products.addAll(productsResponse);
     notifyListeners();
   }
