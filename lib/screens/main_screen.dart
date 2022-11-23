@@ -8,7 +8,8 @@ import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
   final UserInfoModel dataUser;
-  const MainScreen({Key? key, required this.dataUser, }) : super(key: key);
+  String token;
+   MainScreen(  {Key? key, required this.dataUser, required this.token }) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class MainScreen extends StatelessWidget {
                   color: Colors.black,
                   onPressed: () {})
             ]),
-        body: _Paginas(dataUser: dataUser,),
+        body: _Paginas(dataUser: dataUser,token:token),
         bottomNavigationBar: _Navegacion(),
       ),
     );
@@ -73,8 +74,9 @@ class _Navegacion extends StatelessWidget {
 
 class _Paginas extends StatelessWidget {
   final UserInfoModel dataUser;
-  const _Paginas(  {
-    Key? key, required this.dataUser,
+  String token;
+   _Paginas(  {
+    Key? key, required this.dataUser, required this.token
   }) : super(key: key);
 
   @override
@@ -87,7 +89,7 @@ class _Paginas extends StatelessWidget {
       children: <Widget>[
         ProductsScreen(),
         CartScreen(),
-        ProfileScreen(dataUser: dataUser,),
+        ProfileScreen(dataUser: dataUser,token:token),
       ],
     );
   }

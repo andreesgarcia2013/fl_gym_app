@@ -2,15 +2,20 @@ import 'dart:convert';
 
 import 'package:fl_gym_app/models/token_model.dart';
 import 'package:fl_gym_app/models/userInfo_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-class LoginService {
+class LoginService with ChangeNotifier{
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  // LoginService(idUser,token){
+  //   this.getUserInfo(idUser, token);
+  // }
 
    Future<String> credentials() async {
     final url = Uri.parse('http://10.0.2.2:3000/api/v1/store/login');
@@ -49,6 +54,7 @@ class LoginService {
       'Authorization': 'Bearer $token',
     });
     final dataResponse=userInfoModelFromJson(response.body);
+    notifyListeners();
     return (dataResponse); 
   }
 }

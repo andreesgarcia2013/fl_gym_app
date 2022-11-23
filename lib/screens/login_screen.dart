@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           dataUser =await _loginService.getUserInfo(idUser, token);                        
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => MainScreen( dataUser: dataUser,)));
+                                  builder: (context) => MainScreen(dataUser: dataUser, token: token,)));
                         }
                       },
                       child: Text(

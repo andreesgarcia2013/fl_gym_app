@@ -1,9 +1,12 @@
 import 'package:fl_gym_app/models/userInfo_model.dart';
+import 'package:fl_gym_app/screens/form_user_screen.dart';
+import 'package:fl_gym_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
   final UserInfoModel dataUser;
-  const ProfileScreen(  {Key? key, required this.dataUser}) : super(key: key);
+  String token;
+   ProfileScreen(  {Key? key, required this.dataUser, required this.token}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +31,11 @@ class ProfileScreen extends StatelessWidget {
                       child: Stack(children: [
                         Align(
                           alignment: Alignment.bottomRight,
-                          child: MaterialButton(onPressed: (){},
+                          child: MaterialButton(onPressed: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FormUserScreen(dataUser: dataUser,token:token)));
+                          },
                           child: Icon(Icons.edit, color: Colors.white,),
-                          color: Colors.orange,
+                          color: const Color.fromARGB(255, 214, 90, 49),
                           shape: CircleBorder(),
                           ),
                           
@@ -78,7 +83,60 @@ class ProfileScreen extends StatelessWidget {
                         minWidth: 300,
                         height: 50,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)))
+                            borderRadius: BorderRadius.circular(8))),
+                        SizedBox(
+                      height: 8,
+                    ),
+                    MaterialButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.shopping_bag_outlined),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Shopping history",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ],
+                        ),
+                        color: Colors.white,
+                        elevation: 0,
+                        minWidth: 300,
+                        height: 50,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8))),
+                            SizedBox(
+                      height: 8,
+                    ),
+                    MaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen( )));
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.arrow_back_rounded, color: Colors.black,),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Log Out",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ],
+                        ),
+                        color: Colors.white,
+                        elevation: 0,
+                        minWidth: 300,
+                        height: 50,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8))),
+                            
                             
                   ],
                 ),
