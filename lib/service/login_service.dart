@@ -13,9 +13,7 @@ class LoginService with ChangeNotifier{
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  // LoginService(idUser,token){
-  //   this.getUserInfo(idUser, token);
-  // }
+   
 
    Future<String> credentials() async {
     final url = Uri.parse('http://10.0.2.2:3000/api/v1/store/login');
@@ -45,16 +43,16 @@ class LoginService with ChangeNotifier{
     return (decodedToken["userId"]);
   }
 
-  getUserInfo(String idUser, String token) async{
-    print("cargando info");
-    final url = Uri.parse('http://10.0.2.2:3000/api/v1/store/$idUser');
-    final response = await http.get(url, headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
-    });
-    final dataResponse=userInfoModelFromJson(response.body);
-    notifyListeners();
-    return (dataResponse); 
-  }
+  // getUserInfo(String idUser, String token) async{
+  //   print("cargando info");
+  //   final url = Uri.parse('http://10.0.2.2:3000/api/v1/store/$idUser');
+  //   final response = await http.get(url, headers: {
+  //     'Content-Type': 'application/json',
+  //     'Accept': 'application/json',
+  //     'Authorization': 'Bearer $token',
+  //   });
+  //   final dataResponse=userInfoModelFromJson(response.body);
+  //   notifyListeners();
+  //   return (dataResponse); 
+  // }
 }

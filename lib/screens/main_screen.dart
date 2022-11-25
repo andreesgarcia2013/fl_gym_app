@@ -3,13 +3,15 @@ import 'package:fl_gym_app/screens/cart_screen.dart';
 import 'package:fl_gym_app/screens/products_screen.dart';
 import 'package:fl_gym_app/screens/profile_screen.dart';
 import 'package:fl_gym_app/service/products_service.dart';
+import 'package:fl_gym_app/service/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../service/login_service.dart';
+
 class MainScreen extends StatelessWidget {
-  final UserInfoModel dataUser;
   String token;
-   MainScreen(  {Key? key, required this.dataUser, required this.token }) : super(key: key);
+   MainScreen(  {Key? key, required this.token }) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class MainScreen extends StatelessWidget {
                   color: Colors.black,
                   onPressed: () {})
             ]),
-        body: _Paginas(dataUser: dataUser,token:token),
+        body: _Paginas(token:token),
         bottomNavigationBar: _Navegacion(),
       ),
     );
@@ -73,10 +75,9 @@ class _Navegacion extends StatelessWidget {
 }
 
 class _Paginas extends StatelessWidget {
-  final UserInfoModel dataUser;
   String token;
-   _Paginas(  {
-    Key? key, required this.dataUser, required this.token
+   _Paginas(  {required this.token,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -89,7 +90,7 @@ class _Paginas extends StatelessWidget {
       children: <Widget>[
         ProductsScreen(),
         CartScreen(),
-        ProfileScreen(dataUser: dataUser,token:token),
+        ProfileScreen(token: token,),
       ],
     );
   }

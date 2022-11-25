@@ -1,20 +1,24 @@
 import 'package:fl_gym_app/service/user_service.dart';
 import 'package:flutter/material.dart';
-
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import '../models/userInfo_model.dart';
 
 class FormUserScreen extends StatelessWidget {
   final UserInfoModel dataUser;
   String token;
-  FormUserScreen({Key? key, required this.dataUser, required this.token}) : super(key: key);
+  FormUserScreen({Key? key, required this.dataUser, required this.token})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameController =TextEditingController.fromValue(TextEditingValue(text: dataUser.name));
-    TextEditingController emailController = TextEditingController.fromValue(TextEditingValue(text: dataUser.email));
-  final passwordController = TextEditingController();
+    TextEditingController nameController =
+        TextEditingController.fromValue(TextEditingValue(text: dataUser.name!));
+    TextEditingController emailController = TextEditingController.fromValue(
+        TextEditingValue(text: dataUser.email!));
+    final passwordController = TextEditingController();
     final UserService _userService = UserService();
-    
+
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 238, 238, 238),
         appBar: AppBar(
@@ -29,11 +33,10 @@ class FormUserScreen extends StatelessWidget {
             Container(
               child: Center(
                 child: CircleAvatar(
-                          radius: 80,
-                          backgroundImage: AssetImage('assets/profile.jpeg'),
-                          child: Stack(children: [
-                          ]),
-                        ),
+                  radius: 80,
+                  backgroundImage: AssetImage('assets/profile.jpeg'),
+                  child: Stack(children: []),
+                ),
               ),
             ),
             Padding(
@@ -68,15 +71,27 @@ class FormUserScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 12),
-              child: Text("If you do not want to change your password, leave it blank.", style: TextStyle(color: Colors.grey),),
+              child: Text(
+                "If you do not want to change your password, leave it blank.",
+                style: TextStyle(color: Colors.grey),
+              ),
             ),
             const SizedBox(
               height: 20,
             ),
             Center(
               child: MaterialButton(
-                onPressed: () {
-                  _userService.patchData(nameController.text,emailController.text,passwordController.text,token);
+                onPressed: () async {
+                  bool status = await _userService.patchData(
+                      nameController.text,
+                      emailController.text,
+                      passwordController.text,
+                      token);
+                  if (status) {
+                    _alertWidget(context);
+                  } else {
+                    print("No se pudo modificar");
+                  }
                 },
                 child: const Text(
                   'Save',
@@ -97,4 +112,22 @@ class FormUserScreen extends StatelessWidget {
           ],
         ));
   }
+
+  void _alertWidget(context) {
+    MotionToast.success(
+      title: const Text(
+        'Success',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+      description: const Text(
+        'Your information was updated successfully',
+        style: TextStyle(fontSize: 12),
+      ),
+      layoutOrientation: ToastOrientation.rtl,
+      animationType: AnimationType.fromRight,
+      dismissable: true,
+    ).show(context);
+  }
 }
+
+

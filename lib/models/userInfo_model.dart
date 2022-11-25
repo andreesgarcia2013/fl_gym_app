@@ -10,22 +10,22 @@ String userInfoModelToJson(UserInfoModel data) => json.encode(data.toJson());
 
 class UserInfoModel {
     UserInfoModel({
-        required this.id,
-        required this.name,
-        required this.email,
-        required this.isAdmin,
-        required this.avatarId,
-        required this.v,
-        required this.userInfoModelId,
+         this.id,
+         this.name,
+         this.email,
+         this.isAdmin,
+         this.avatarId,
+         this.v,
+         this.userInfoModelId,
     });
 
-    String id;
-    String name;
-    String email;
-    bool isAdmin;
-    String avatarId;
-    int v;
-    String userInfoModelId;
+    String? id;
+    String? name;
+    String? email;
+    bool? isAdmin;
+    String? avatarId;
+    int? v;
+    String? userInfoModelId;
 
     factory UserInfoModel.fromJson(Map<String, dynamic> json) => UserInfoModel(
         id: json["_id"],

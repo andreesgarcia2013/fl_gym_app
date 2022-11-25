@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class ProductsScreen extends StatelessWidget {
    
   const ProductsScreen({Key? key}) : super(key: key);
-  
+   
   @override
   Widget build(BuildContext context) {
     final productsService = Provider.of<ProductsService>(context);

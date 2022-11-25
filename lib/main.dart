@@ -4,6 +4,7 @@ import 'package:fl_gym_app/screens/login_screen.dart';
 import 'package:fl_gym_app/screens/main_screen.dart';
 import 'package:fl_gym_app/service/login_service.dart';
 import 'package:fl_gym_app/service/products_service.dart';
+import 'package:fl_gym_app/service/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,8 +21,7 @@ class MyApp extends StatelessWidget {
     return  MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => new ProductsService()),
-        ChangeNotifierProvider(create: (_)=>new LoginService()),
-
+        
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

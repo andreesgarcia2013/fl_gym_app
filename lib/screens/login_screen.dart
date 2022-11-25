@@ -2,7 +2,10 @@ import 'package:fl_gym_app/models/userInfo_model.dart';
 import 'package:fl_gym_app/screens/main_screen.dart';
 import 'package:fl_gym_app/service/login_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+
+import '../service/user_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -97,12 +100,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         var token = await _loginService.credentials();
                         if (token == "Wrong") {                          
                           _alertWidget(context);
-                        } else {
-                          var idUser = _loginService.decodeToken(token);
-                          dataUser =await _loginService.getUserInfo(idUser, token);                        
+                        } else {                     
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => MainScreen(dataUser: dataUser, token: token,)));
+                                  builder: (context) => MainScreen(token: token,)));
                         }
                       },
                       child: Text(
@@ -182,3 +183,4 @@ class _LoginScreenState extends State<LoginScreen> {
   // }
 
 }
+
