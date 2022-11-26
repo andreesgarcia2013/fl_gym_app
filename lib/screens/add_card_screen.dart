@@ -1,9 +1,13 @@
+import 'package:fl_gym_app/service/cards_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 
 class AddCardScreen extends StatefulWidget {
-  const AddCardScreen({Key? key}) : super(key: key);
+  String token;
+  AddCardScreen({Key? key, required this.token}) : super(key: key);
 
   @override
   State<AddCardScreen> createState() => _AddCardScreenState();
@@ -119,9 +123,13 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     ),
                     Center(
                       child: MaterialButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (formKey.currentState!.validate()) {
                             print('valid!');
+                            bool status = await CardsService().addCard(cardHolderName, cardNumber, cvvCode, expiryDate, widget.token);
+                            if (status) {
+                              Navigator.pop(context);
+                            }
                           } else {
                             print('invalid!');
                           }
@@ -158,5 +166,21 @@ class _AddCardScreenState extends State<AddCardScreen> {
       cvvCode = creditCardModel.cvvCode;
       isCvvFocused = creditCardModel.isCvvFocused;
     });
+  }
+
+  void _alertWidget(context) {
+    MotionToast.success(
+      title: const Text(
+        'Success',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+      description: const Text(
+        'Your information was updated successfully',
+        style: TextStyle(fontSize: 12),
+      ),
+      layoutOrientation: ToastOrientation.rtl,
+      animationType: AnimationType.fromRight,
+      dismissable: true,
+    ).show(context);
   }
 }

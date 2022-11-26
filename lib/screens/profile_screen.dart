@@ -2,6 +2,7 @@ import 'package:fl_gym_app/models/userInfo_model.dart';
 import 'package:fl_gym_app/screens/cards_screen.dart';
 import 'package:fl_gym_app/screens/form_user_screen.dart';
 import 'package:fl_gym_app/screens/login_screen.dart';
+import 'package:fl_gym_app/screens/shopping_history_screen.dart';
 import 'package:fl_gym_app/service/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -100,7 +101,7 @@ class InfoUser extends StatelessWidget {
                 ),
                 MaterialButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CardsScreen()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CardsScreen(token:token)));
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -125,7 +126,11 @@ class InfoUser extends StatelessWidget {
                   height: 8,
                 ),
                 MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => ShoppingHistoryScreen( token: token)));
+                    },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [

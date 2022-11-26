@@ -34,7 +34,7 @@ class _Producto extends StatelessWidget {
             children: [
               FadeInImage(
                 image: NetworkImage(
-                    producto.gallery[0]),
+                    'https://www.asimetrica.org/wp-content/uploads/2019/03/no-imagen.jpg'),
                 placeholder: AssetImage('assets/giphy.gif'),
                 height: 230,
                 fit: BoxFit.cover,
